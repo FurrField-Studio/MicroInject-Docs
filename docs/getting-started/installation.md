@@ -35,4 +35,7 @@ Add this package:
 
 ### Using AssetStore (No Samples available) (Needs to publish to assetstore)
 
-### Using .unitypackage (No Samples available) (Needs to upload .unitypackage to GitHub)
+### Using .unitypackage (No Samples available)
+
+- Go to ``https://github.com/FurrField-Studio/MicroInject/releases`` and download latest ``MicroInject.unitypackage``
+- Import it to your project

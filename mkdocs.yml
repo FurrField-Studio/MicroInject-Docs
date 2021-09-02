@@ -1,5 +1,5 @@
 site_name: Micro Inject
-site_url: https://github.com/FurrField-Studio/MicroInject-Docs
+site_url: https://furrfield-studio.github.io/MicroInject-Docs/
 site_author: FurrField Studio
 site_description: >-
   MicroInject is simple Dependency Injection framework made for Unity Engine that allows you to easily inject components.
@@ -21,7 +21,7 @@ theme:
     - navigation.tabs
 
   icon:
-    repo: fontawesome/brands/gitlab
+    repo: fontawesome/brands/github
 
 plugins:
   - macros
@@ -35,6 +35,10 @@ extra:
     - icon: fontawesome/brands/gitlab
       link: https://gitlab.com/furrfieldstudio
       name: FurrField Studio on Gitlab
+
+    - icon: fontawesome/brands/github
+      link: https://github.com/FurrField-Studio
+      name: FurrField Studio on GitHub
 
     - icon: fontawesome/brands/unity
       link: https://assetstore.unity.com/
