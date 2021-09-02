@@ -1,0 +1,64 @@
+site_name: External Console
+site_url: https://furrfieldstudio.gitlab.io/micro-inject-docs/
+site_author: FurrField Studio
+site_description: >-
+  MicroInject is simple Dependency Injection framework made for Unity Engine that allows you to easily inject components.
+
+repo_url: https://gitlab.com/furrfieldstudio/micro-inject/micro-inject-docs
+repo_name: furrfieldstudio/micro-inject-docs
+
+copyright: Copyright &copy; 2021 FurrField Studio
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: indigo
+    accent: blue
+    
+  features:
+    - navigation.instant
+    - navigation.tabs
+
+  icon:
+    repo: fontawesome/brands/gitlab
+
+plugins:
+  - macros
+
+extra:
+  social:
+    - icon: fontawesome/regular/file-word
+      link: https://furrfield.com/
+      name: Our webpage :3
+
+    - icon: fontawesome/brands/gitlab
+      link: https://gitlab.com/furrfieldstudio
+      name: FurrField Studio on Gitlab
+
+    - icon: fontawesome/brands/unity
+      link: https://assetstore.unity.com/
+      name: FurrField Studio on Unity
+
+  links:
+    assetstore: https://assetstore.unity.com/
+
+  project:
+    name: Micro Inject
+    codename: MicroInject
+
+  studio:
+    name: FurrField Studio
+
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+
+nav:
+  - Home: index.md
+  - Getting started:
+    - Installation: getting-started/installation.md
+    - Usage: getting-started/usage.md
+  - Micro Inject Window: window.md
+  - Changelog: changelog.md
