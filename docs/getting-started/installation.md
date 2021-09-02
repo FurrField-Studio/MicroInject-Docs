@@ -2,5 +2,37 @@
 
 {{project.name}} is simple Dependency Injection framework made for Unity Engine that allows you to easily inject components.
 
-- Import the {{project.codename}}.unitypackage into the project. (You can untick Test folder and TestScene)
-- Profit???
+### Using OpenUPM (Recommended) (Needs to publish to OpenUPM)
+
+Add the OpenUPM registry with the ``com.furrfield`` scope to your project
+<br>
+
+- Open ``Edit/Project Settings/Package Manager``
+- Add a new Scoped Registry:
+```
+Name: OpenUPM
+URL:  https://package.openupm.com/
+Scope(s): com.furrfield
+```
+- Click save
+<br>
+
+Add this package:
+
+- Open ``Window/Package Manager``
+- Click ``+``
+- Click ``Add package from git URL`` or ``Add package by name``
+- Paste com.furrfield.micro-inject
+- Click ``Add``
+
+
+### Using package (Recommended)
+
+- Open ``Window/Package Manager``
+- Click ``+``
+- Click ``Add package from git URL`` or ``Add package by name``
+- Add ``https://github.com/FurrField-Studio/MicroInject.git`` in Package Manager
+
+### Using AssetStore (No Samples available) (Needs to publish to assetstore)
+
+### Using .unitypackage (No Samples available) (Needs to upload .unitypackage to GitHub)
