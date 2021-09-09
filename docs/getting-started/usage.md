@@ -4,8 +4,8 @@ Using this framework is really simple.
 
 ##Basic usage
 
-### Marking as dependency
-To use component as dependency you need to mark its class using ``[Dependency]`` attribute.
+### Marking component as dependency
+To use component as a dependency you need to mark its class using ``[Dependency]`` attribute.
 <br>
 Example:
 
@@ -26,7 +26,7 @@ public class ClassB : MonoBehaviour
 
 then add ``RegisterAsDependencies`` component to gameobject that have components with ``[Dependency]`` attribute.
 
-### Marking field for injecting
+### Marking field for injection
 To inject dependency into a field you need to mark it using ``[Inject]`` attribute, and call ``{{project.codename}}.InjectDependencies(this)`` in ``void Start()``
 <br>
 Example:
@@ -47,7 +47,7 @@ public class InjectTest : MonoBehaviour
 ## Switching scenes
 Add ``RebuildDependencyListOnSceneChange`` to easily rebuild dependency list when scene is unloaded or manually call ``{{project.codename}}.RebuildDependencyList()``
 
-## In-editor injecting
+## In-editor injection
 This feature saves performance by performing injection in-editor instead at runtime. Dependencies are injected once in-editor instead of everytime when entering playmode or starting game.
 <br>
 
@@ -88,7 +88,7 @@ public class ClassNamedDependency : MonoBehaviour
 
 - Add ``[Inject("NameOfDependency")]`` to mark field for named dependency injection.
 
-Example for dependency named ``ClassNamedDependency``:
+Example for named dependency ``ClassNamedDependency``:
 
 ```csharp
 public class InjectTest : MonoBehaviour
@@ -103,7 +103,7 @@ public class InjectTest : MonoBehaviour
 }
 ```
 
-Example for in-editor injection of dependency named ``ClassNamedDependency``:
+Example for in-editor injection of named dependency ``ClassNamedDependency``:
 
 ```csharp
 [AutoInjectInEditor]
@@ -118,7 +118,7 @@ public class InjectTest : MonoBehaviour
 
 MicroInject also allows injecting only one named dependency by calling ``{{project.codename}}.InjectNamedDependency("NameOfField", component)``.
 
-Example for dependency named ``ClassNamedDependency``:
+Example for named dependency ``ClassNamedDependency``:
 
 ```csharp
 public class InjectTest : MonoBehaviour

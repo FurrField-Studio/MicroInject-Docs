@@ -14,4 +14,4 @@ Roadmap:
 <br>
 
 - <b>(Critical for release)</b> Name tracking for dynamically named dependencies (this should simplify usage of dynamically named dependencies)
-- Pre-register injection marked fields for dynamically registered dependencies - injecting ``[DontDestroyOnLoad]`` dependencies or dependencies from other scenes without using entire runtime injection loop
+- Pre-register injection marked fields for dynamically registered dependencies - injecting ``[DontDestroyOnLoad]`` dependencies or dependencies from other scenes without using the entire runtime injection loop

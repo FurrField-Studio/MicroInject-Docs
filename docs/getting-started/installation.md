@@ -2,7 +2,7 @@
 
 {{project.name}} is simple Dependency Injection framework made for Unity Engine that allows you to easily inject components.
 
-### Using OpenUPM (Recommended) (Needs to publish to OpenUPM)
+### Using OpenUPM (Recommended) (Needs to be published to OpenUPM)
 
 Add the OpenUPM registry with the ``com.furrfield`` scope to your project
 <br>
@@ -33,7 +33,7 @@ Add this package:
 - Click ``Add package from git URL`` or ``Add package by name``
 - Add ``https://github.com/FurrField-Studio/MicroInject.git`` in Package Manager
 
-### Using AssetStore (No Samples available) (Needs to publish to assetstore)
+### Using AssetStore (No Samples available) (Needs to be published to AssetStore)
 
 ### Using .unitypackage (No Samples available)
 
