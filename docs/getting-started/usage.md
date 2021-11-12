@@ -159,11 +159,13 @@ Example:
 ```csharp
 public class DynamicDependency : MonoBehaviour
 {
-    public DynamicDependencyName DynamicDependencyName;
+    public DynamicDependencyName DynamicDependencyName = new DynamicDependencyName();
     
     private void Awake()
     {
-        DynamicDependencyName = new DynamicDependencyName(this);
+        DynamicDependencyName.Component = this;
+        
+        //Optionally set name, this can be also set from the inspector
         DynamicDependencyName.Name = "DynamicTest";
     }
 }

@@ -11,5 +11,7 @@ Features:
 
 Roadmap:
 <br>
-- v1.1.0  - add support for injecting ScriptableObjects
-- v1.2.0  - add support for injecting gameobjects
+
+- v1.1.0 - add support for injecting ScriptableObjects
+<br>
+- v1.2.0 - add support for injecting gameobjects
