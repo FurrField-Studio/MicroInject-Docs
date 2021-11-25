@@ -152,20 +152,20 @@ This method doesn't use any attributes instead it uses ``DynamicDependencyName``
 ### Adding dynamically named dependency
 
 - Add ``DynamicDependencyName`` variable to class that should be dynamically injected.
-- Use ``DynamicDependencyName.Name`` variable to change name of dependency.
+- Use ``DynamicDependencyName.Name`` variable to change name of dependency, this can also be set from inspector.
 
 Example:
   
 ```csharp
 public class DynamicDependency : MonoBehaviour
 {
-    public DynamicDependencyName DynamicDependencyName = new DynamicDependencyName();
+    public DynamicDependencyName DynamicDependencyName;
     
     private void Awake()
     {
         DynamicDependencyName.Component = this;
         
-        //Optionally set name, this can be also set from the inspector
+        //Optionally set name, this can also be set from the inspector
         DynamicDependencyName.Name = "DynamicTest";
     }
 }
@@ -177,7 +177,8 @@ Don't give the same name to 2 dependencies, because the dependency with new name
 ### Injecting dynamically named dependency
 
 - Add ``DynamicInject<T>`` variable to your class for dynamically named dependency injection.
-- Use ``DynamicInject.Name`` variable to change name of dependency that should be injected.
+- Call ``DynamicInject.RegisterInSystem()`` in ``Start()`` to register DynamicInject in system.
+- Use ``DynamicInject.Name`` variable to change name of dependency that should be injected, this can also be set from inspector.
 - And ``DynamicInject.IsInjected`` variable to check if any dependency is injected.
 
 Example for dependency ``DynamicDependency``:
@@ -185,11 +186,11 @@ Example for dependency ``DynamicDependency``:
 ```csharp
 public class InjectTest : MonoBehaviour
 {
-    public DynamicInject<DynamicDependency> DynamicInject = new DynamicInject<DynamicDependency>();
+    public DynamicInject<DynamicDependency> DynamicInject;
     
     void Start()
     {
-        DynamicInject.Name = "DynamicTest";
+        DynamicInject.RegisterInSystem();
     }
 }
 ```
