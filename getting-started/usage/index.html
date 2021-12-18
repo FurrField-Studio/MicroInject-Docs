@@ -1,0 +1,905 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="MicroInject is simple Dependency Injection framework made for Unity Engine that allows you to easily inject components.">
+      
+      
+        <meta name="author" content="FurrField Studio">
+      
+      
+        <link rel="canonical" href="https://furrfield-studio.github.io/MicroInject-Docs/getting-started/usage/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.2">
+    
+    
+      
+        <title>Usage - Micro Inject</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f7951f6f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#usage" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Micro Inject" class="md-header__button md-logo" aria-label="Micro Inject" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Micro Inject
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Usage
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/FurrField-Studio/MicroInject/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    furrfieldstudio/micro-inject
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../installation/" class="md-tabs__link md-tabs__link--active">
+        Getting started
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../window/" class="md-tabs__link">
+      Micro Inject Window
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../changelog/" class="md-tabs__link">
+      Changelog
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Micro Inject" class="md-nav__button md-logo" aria-label="Micro Inject" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Micro Inject
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/FurrField-Studio/MicroInject/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    furrfieldstudio/micro-inject
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Getting started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Getting started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Usage
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Usage
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    Basic usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#marking-component-as-dependency" class="md-nav__link">
+    Marking component as dependency
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#marking-field-for-injection" class="md-nav__link">
+    Marking field for injection
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#switching-scenes" class="md-nav__link">
+    Switching scenes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-editor-injection" class="md-nav__link">
+    In-editor injection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#named-dependencies" class="md-nav__link">
+    Named dependencies
+  </a>
+  
+    <nav class="md-nav" aria-label="Named dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#marking-as-named-dependency" class="md-nav__link">
+    Marking as named dependency
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#marking-for-named-dependency-injection" class="md-nav__link">
+    Marking for named dependency injection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-editor-injection-for-named-dependency" class="md-nav__link">
+    In-editor injection for named dependency
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-injection-for-named-dependency" class="md-nav__link">
+    Manual injection for named dependency
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamically-named-dependencies" class="md-nav__link">
+    Dynamically named dependencies
+  </a>
+  
+    <nav class="md-nav" aria-label="Dynamically named dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-dynamically-named-dependency" class="md-nav__link">
+    Adding dynamically named dependency
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#injecting-dynamically-named-dependency" class="md-nav__link">
+    Injecting dynamically named dependency
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../window/" class="md-nav__link">
+        Micro Inject Window
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    Basic usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#marking-component-as-dependency" class="md-nav__link">
+    Marking component as dependency
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#marking-field-for-injection" class="md-nav__link">
+    Marking field for injection
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#switching-scenes" class="md-nav__link">
+    Switching scenes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-editor-injection" class="md-nav__link">
+    In-editor injection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#named-dependencies" class="md-nav__link">
+    Named dependencies
+  </a>
+  
+    <nav class="md-nav" aria-label="Named dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#marking-as-named-dependency" class="md-nav__link">
+    Marking as named dependency
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#marking-for-named-dependency-injection" class="md-nav__link">
+    Marking for named dependency injection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-editor-injection-for-named-dependency" class="md-nav__link">
+    In-editor injection for named dependency
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-injection-for-named-dependency" class="md-nav__link">
+    Manual injection for named dependency
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamically-named-dependencies" class="md-nav__link">
+    Dynamically named dependencies
+  </a>
+  
+    <nav class="md-nav" aria-label="Dynamically named dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-dynamically-named-dependency" class="md-nav__link">
+    Adding dynamically named dependency
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#injecting-dynamically-named-dependency" class="md-nav__link">
+    Injecting dynamically named dependency
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/FurrField-Studio/MicroInject/edit/master/docs/getting-started/usage.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+<h1 id="usage">Usage</h1>
+<p>Using this framework is really simple.</p>
+<h2 id="basic-usage">Basic usage</h2>
+<p>First add <code>Micro Inject Manager</code> somewhere in your gameobjects, so system can clear internal data and manage scene switching.</p>
+<h3 id="marking-component-as-dependency">Marking component as dependency</h3>
+<p>To use component as a dependency you need to mark its class using <code>[Dependency]</code> attribute.
+<br>
+Example:</p>
+<div class="highlight"><pre><span></span><code><span class="na">[Dependency]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">ClassB</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+    <span class="c1">//variables</span>
+
+    <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">//code</span>
+    <span class="p">}</span>
+
+    <span class="c1">//code</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>then add <code>RegisterAsDependencies</code> component to gameobject that have components with <code>[Dependency]</code> attribute.</p>
+<h3 id="marking-field-for-injection">Marking field for injection</h3>
+<p>To inject dependency into a field you need to mark it using <code>[Inject]</code> attribute, and call <code>MicroInject.InjectDependencies(this)</code> in <code>void Start()</code>
+<br>
+Example:</p>
+<div class="highlight"><pre><span></span><code><span class="k">public</span> <span class="k">class</span> <span class="nc">InjectTest</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+<span class="na">    [Inject]</span>
+    <span class="k">public</span> <span class="n">ClassA</span> <span class="n">ClassA</span><span class="p">;</span>
+
+    <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">MicroInject</span><span class="p">.</span><span class="n">InjectDependencies</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="switching-scenes">Switching scenes</h2>
+<p>Tick <code>RebuildDependencyListOnSceneChange</code> in <code>Micro Inject Manager</code>  to easily rebuild dependency list when scene is unloaded or manually call <code>MicroInject.RebuildDependencyList()</code></p>
+<h2 id="in-editor-injection">In-editor injection</h2>
+<p>This feature saves performance by performing injection in-editor instead at runtime. Dependencies are injected once in-editor instead of everytime when entering playmode or starting game.
+<br></p>
+<ul>
+<li>Add <code>LoadDependencies</code> component in one of your gameobjects (gameobject shouldn't be marked by <code>[DontDestroyOnLoad]</code> or moved to different scene)</li>
+<li>Tick <code>Register In Editor</code> in <code>RegisterAsDependencies</code> component to mark dependencies in gameobject for in-editor inject.</li>
+<li>Add <code>[AutoInjectInEditor]</code> attribute to component that should be allowed for in-editor injection and add <code>[Inject(true)]</code> attribute to any field that should have in-editor injected dependency.</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="na">[AutoInjectInEditor]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">InjectTest</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+<span class="na">    [Inject(true)]</span>
+    <span class="k">public</span> <span class="n">ClassA</span> <span class="n">ClassA</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>Open MicroInject window located in <code>FurrField Studio/Micro Inject</code></li>
+<li>Click <code>Pregenerate dependency list</code> to grab in-editor injectable dependencies, then click <code>Inject dependencies</code> to inject dependencies to fields marked for in-editor injection. (See <a href="../../window/">Micro Inject Window</a>)</li>
+</ul>
+<h2 id="named-dependencies">Named dependencies</h2>
+<h3 id="marking-as-named-dependency">Marking as named dependency</h3>
+<ul>
+<li>Add <code>[NamedDependencyField]</code> attribute to string field located in dependency to mark it as the name of dependency.</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="na">[Dependency]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">ClassNamedDependency</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+
+<span class="na">    [NamedDependencyField]</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">DependencyName</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<p><b>Warning</b>:
+Don't give the same name to 2 dependencies, because the second dependency will not be registered in the system.</p>
+<h3 id="marking-for-named-dependency-injection">Marking for named dependency injection</h3>
+<ul>
+<li>Add <code>[Inject("NameOfDependency")]</code> to mark field for named dependency injection.</li>
+</ul>
+<p>Example for named dependency <code>ClassNamedDependency</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">public</span> <span class="k">class</span> <span class="nc">InjectTest</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+<span class="na">    [Inject(&quot;ClassNamedDependency&quot;)]</span>
+    <span class="k">public</span> <span class="n">ClassNamedDependency</span> <span class="n">ClassNamedDependency</span><span class="p">;</span>
+
+    <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">MicroInject</span><span class="p">.</span><span class="n">InjectDependencies</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="in-editor-injection-for-named-dependency">In-editor injection for named dependency</h3>
+<p>Example for in-editor injection of named dependency <code>ClassNamedDependency</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="na">[AutoInjectInEditor]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">InjectTest</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+<span class="na">    [Inject(&quot;ClassNamedDependency&quot;, true)]</span>
+    <span class="k">public</span> <span class="n">ClassNamedDependency</span> <span class="n">ClassNamedDependency</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="manual-injection-for-named-dependency">Manual injection for named dependency</h3>
+<p>MicroInject also allows manual injection of named dependency by calling <code>MicroInject.InjectNamedDependency("NameOfField", component)</code>.</p>
+<p>Example for named dependency <code>NamedDependency</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">public</span> <span class="k">class</span> <span class="nc">InjectTest</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+<span class="na">    [Inject(&quot;NamedDependency&quot;)]</span>
+    <span class="k">public</span> <span class="n">ClassNamedDependency</span> <span class="n">ClassNamedDependency</span><span class="p">;</span>
+
+    <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">MicroInject</span><span class="p">.</span><span class="n">InjectNamedDependency</span><span class="p">(</span><span class="s">&quot;NamedDependency&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="dynamically-named-dependencies">Dynamically named dependencies</h2>
+<p>Almost like named dependencies but allows to change the name during runtime.
+This method doesn't use any attributes instead it uses <code>DynamicDependencyName</code> class and <code>DynamicInject&lt;T&gt;</code> generic class to know when Name or Component changes.</p>
+<h3 id="adding-dynamically-named-dependency">Adding dynamically named dependency</h3>
+<ul>
+<li>Add <code>DynamicDependencyName</code> variable to class that should be dynamically injected.</li>
+<li>Use <code>DynamicDependencyName.Name</code> variable to change name of dependency, this can also be set from inspector.</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="k">public</span> <span class="k">class</span> <span class="nc">DynamicDependency</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="n">DynamicDependencyName</span> <span class="n">DynamicDependencyName</span><span class="p">;</span>
+
+    <span class="k">private</span> <span class="k">void</span> <span class="nf">Awake</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">DynamicDependencyName</span><span class="p">.</span><span class="n">Component</span> <span class="p">=</span> <span class="k">this</span><span class="p">;</span>
+
+        <span class="c1">//Optionally set name, this can also be set from the inspector</span>
+        <span class="n">DynamicDependencyName</span><span class="p">.</span><span class="n">Name</span> <span class="p">=</span> <span class="s">&quot;DynamicTest&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><b>Warning</b>:
+Don't give the same name to 2 dependencies, because the dependency with new name will be removed from the system.</p>
+<h3 id="injecting-dynamically-named-dependency">Injecting dynamically named dependency</h3>
+<ul>
+<li>Add <code>DynamicInject&lt;T&gt;</code> variable to your class for dynamically named dependency injection.</li>
+<li>Call <code>DynamicInject.RegisterInSystem()</code> in <code>Start()</code> to register DynamicInject in system.</li>
+<li>Use <code>DynamicInject.Name</code> variable to change name of dependency that should be injected, this can also be set from inspector.</li>
+<li>And <code>DynamicInject.IsInjected</code> variable to check if any dependency is injected.</li>
+</ul>
+<p>Example for dependency <code>DynamicDependency</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">public</span> <span class="k">class</span> <span class="nc">InjectTest</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="n">DynamicInject</span><span class="p">&lt;</span><span class="n">DynamicDependency</span><span class="p">&gt;</span> <span class="n">DynamicInject</span><span class="p">;</span>
+
+    <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">DynamicInject</span><span class="p">.</span><span class="n">RegisterInSystem</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><b>Note</b>:
+<code>DynamicInject&lt;T&gt;</code> uses internal component variable to store injected dependency, which allows to inject any component, but only component of type <code>T</code> can be accessed from user code. This is framework limitation created to prevent developers from directly accessing component and making multiple type checks to get its type.</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../installation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Installation
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../window/" class="md-footer__link md-footer__link--next" aria-label="Next: Micro Inject Window" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Micro Inject Window
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2021 FurrField Studio
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    <a href="https://furrfield.com/" target="_blank" rel="noopener" title="Our webpage :3" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M369.9 97.9 286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM332.1 128H256V51.9l76.1 76.1zM48 464V48h160v104c0 13.3 10.7 24 24 24h104v288H48zm220.1-208c-5.7 0-10.6 4-11.7 9.5-20.6 97.7-20.4 95.4-21 103.5-.2-1.2-.4-2.6-.7-4.3-.8-5.1.3.2-23.6-99.5-1.3-5.4-6.1-9.2-11.7-9.2h-13.3c-5.5 0-10.3 3.8-11.7 9.1-24.4 99-24 96.2-24.8 103.7-.1-1.1-.2-2.5-.5-4.2-.7-5.2-14.1-73.3-19.1-99-1.1-5.6-6-9.7-11.8-9.7h-16.8c-7.8 0-13.5 7.3-11.7 14.8 8 32.6 26.7 109.5 33.2 136 1.3 5.4 6.1 9.1 11.7 9.1h25.2c5.5 0 10.3-3.7 11.6-9.1l17.9-71.4c1.5-6.2 2.5-12 3-17.3l2.9 17.3c.1.4 12.6 50.5 17.9 71.4 1.3 5.3 6.1 9.1 11.6 9.1h24.7c5.5 0 10.3-3.7 11.6-9.1 20.8-81.9 30.2-119 34.5-136 1.9-7.6-3.8-14.9-11.6-14.9h-15.8z"/></svg>
+    </a>
+  
+    
+    
+    <a href="https://gitlab.com/furrfieldstudio" target="_blank" rel="noopener" title="FurrField Studio on Gitlab" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M105.2 24.9c-3.1-8.9-15.7-8.9-18.9 0L29.8 199.7h132c-.1 0-56.6-174.8-56.6-174.8zM.9 287.7c-2.6 8 .3 16.9 7.1 22l247.9 184-226.2-294zm160.8-88 94.3 294 94.3-294zm349.4 88-28.8-88-226.3 294 247.9-184c6.9-5.1 9.7-14 7.2-22zM425.7 24.9c-3.1-8.9-15.7-8.9-18.9 0l-56.6 174.8h132z"/></svg>
+    </a>
+  
+    
+    
+    <a href="https://github.com/FurrField-Studio" target="_blank" rel="noopener" title="FurrField Studio on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    <a href="https://assetstore.unity.com/" target="_blank" rel="noopener" title="FurrField Studio on Unity" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="m498.11 206.4-52.8-191.68L248.2 66.08 219 116.14l-59.2-.43L15.54 256l144.28 140.32 59.17-.43 29.24 50 197.08 51.36 52.8-191.62-30-49.63zm-274.34-82.2 150.78-37.69L288 232.33H114.87zm0 263.63-108.9-108.12H288l86.55 145.81zm193 14L330.17 256l86.58-145.84L458.56 256z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.649a939e.min.js"></script>
+      
+    
+  </body>
+</html>
