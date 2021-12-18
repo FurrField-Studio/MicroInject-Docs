@@ -1,5 +1,13 @@
 # Changelog
 
+### v1.0.6
+- Fixed error during in-editor injection when no MicroInjectLoadDepenencies component exist
+- Fixed error during in-editor injection when any scene is unloaded
+- Now you can inject dependencies into private fields
+
+### v1.0.5
+- Internal improvement
+
 ### v1.0.4
 - Changes in DependencyName and DynamicInject to allow setting name from inspector
 - Fixed package throwing error when building project
